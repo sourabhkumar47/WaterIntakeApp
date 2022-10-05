@@ -16,6 +16,13 @@ fun WaterCounter(modifier: Modifier = Modifier) {
         var count by remember { mutableStateOf(0) }
 
         if (count > 0) {
+            var showtask by remember { mutableStateOf(true) }
+            if (showtask) {
+                WellnessTaskItem(
+                    taskName = "Have you taken 15 min walk today?",
+                    onClose = {showtask = false }
+                )
+            }
             // This text is present if the button has been clicked
             // at least once; absent otherwise
             Text("You've had ${count} glasses.")
@@ -23,7 +30,7 @@ fun WaterCounter(modifier: Modifier = Modifier) {
 
         Button(
             onClick = { count++ },
-            Modifier.padding(top = 8.dp),
+//            Modifier.padding(top = 8.dp),
             enabled = count < 10,
             shape = RoundedCornerShape(24.dp)
         ) {
